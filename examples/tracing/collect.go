@@ -58,7 +58,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	p := profiler.NewSampleProfiler(trace)
+	p := profiler.NewSampleProfiler(trace, profiler.WithManagedCodeOnly())
 	stream.EventHandler = p.EventHandler
 	stream.MetadataHandler = p.MetadataHandler
 	stream.StackBlockHandler = p.StackBlockHandler
