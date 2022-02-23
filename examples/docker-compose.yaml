@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  tracer:
+    build:
+      context: ..
+      dockerfile: examples/Dockerfile
+    command:
+      - "-p"
+      - "1"
+    volumes:
+      - "connection:/tmp"
+    restart: "no"
+    depends_on: [app]
+  app:
+    image: mcr.microsoft.com/dotnet/samples:aspnetapp
+    ports:
+      - "5000:80"
+    volumes:
+      - "connection:/tmp"
+
+volumes:
+  connection:
